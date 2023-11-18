@@ -1,0 +1,91 @@
+
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        
+        int[] opciones = { 1, 2, 3, 4 };
+
+        Console.WriteLine("Seleccionar la operación que desea utilizar:");
+        Console.WriteLine("1. Suma");
+        Console.WriteLine("2. Resta");
+        Console.WriteLine("3. Multiplicación");
+        Console.WriteLine("4. División");
+
+        int opcion;
+        if (int.TryParse(Console.ReadLine(), out opcion) && Array.IndexOf(opciones, opcion) != -1)
+        {
+            try
+            {
+                switch (opcion)
+                {
+                    case 1:
+                        RealizarSuma();
+                        break;
+                    case 2:
+                        RealizarResta();
+                        break;
+                    case 3:
+                        RealizarMultiplicacion();
+                        break;
+                    case 4:
+                        RealizarDivision();
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
+        }
+        else
+        {
+            Console.WriteLine("Opción inválida.");
+        }
+    }
+
+    static void RealizarSuma()
+    {
+        Console.WriteLine("Ingresar el primer número:");
+        int num1 = int.Parse(Console.ReadLine());
+        Console.WriteLine("Ingresar el segundo número:");
+        int num2 = int.Parse(Console.ReadLine());
+        Console.WriteLine("Resultado: " + (num1 + num2));
+    }
+
+    static void RealizarResta()
+    {
+        Console.WriteLine("Ingresar el primer número:");
+        int num1 = int.Parse(Console.ReadLine());
+        Console.WriteLine("Ingresar el segundo número:");
+        int num2 = int.Parse(Console.ReadLine());
+        Console.WriteLine("Resultado: " + (num1 - num2));
+    }
+
+    static void RealizarMultiplicacion()
+    {
+        Console.WriteLine("Ingresar el primer número:");
+        int num1 = int.Parse(Console.ReadLine());
+        Console.WriteLine("Ingresar el segundo número:");
+        int num2 = int.Parse(Console.ReadLine());
+        Console.WriteLine("Resultado: " + (num1 * num2));
+    }
+
+    static void RealizarDivision()
+    {
+        Console.WriteLine("Ingresar el numerador (entero):");
+        int num1 = int.Parse(Console.ReadLine());
+        Console.WriteLine("Ingresar el denominador (entero distinto de cero):");
+        int num2 = int.Parse(Console.ReadLine());
+
+        if (num2 == 0)
+        {
+            throw new DivideByZeroException("No se puede dividir por cero.");
+        }
+
+        Console.WriteLine("Resultado: " + ((double)num1 / num2));
+    }
+}
+
